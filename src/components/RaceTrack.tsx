@@ -666,6 +666,104 @@ const RaceTrack: React.FC = () => {
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
           }
+          
+          /* 모바일 최적화 스타일 */
+          @media (max-width: 768px) {
+            .title-text {
+              font-size: 28px !important;
+            }
+            .horse-count-text {
+              font-size: 18px !important;
+            }
+            .count-button {
+              width: 36px !important;
+              height: 36px !important;
+              font-size: 20px !important;
+            }
+            .count-value {
+              font-size: 22px !important;
+              min-width: 40px !important;
+              padding: 3px 10px !important;
+            }
+            .race-button {
+              min-width: auto !important;
+              padding: 8px 16px !important;
+              font-size: 14px !important;
+            }
+            .sound-label {
+              padding: 5px 10px !important;
+            }
+            .sound-label span {
+              font-size: 16px !important;
+            }
+            .pixel-checkbox {
+              width: 20px !important;
+              height: 20px !important;
+            }
+            .result-title {
+              font-size: 24px !important;
+            }
+            .rank-badge {
+              width: 40px !important;
+              height: 40px !important;
+              font-size: 18px !important;
+            }
+            .horse-name {
+              font-size: 18px !important;
+            }
+            .horse-stats {
+              font-size: 14px !important;
+              padding: 3px 8px !important;
+            }
+            .result-item {
+              padding: 10px !important;
+              margin: 10px 0 !important;
+            }
+          }
+          
+          /* 작은 모바일 화면 최적화 */
+          @media (max-width: 480px) {
+            .title-text {
+              font-size: 18px !important;
+              white-space: nowrap !important;
+              letter-spacing: 0 !important;
+            }
+            .mobile-controls {
+              flex-direction: column !important;
+              align-items: flex-start !important;
+            }
+            .mobile-controls > div, 
+            .mobile-controls > button,
+            .mobile-controls > label {
+              margin-bottom: 15px !important;
+              width: 100% !important;
+              justify-content: flex-start !important;
+            }
+            .name-edit-button, .sound-label {
+              align-self: flex-start !important;
+              margin-left: 0 !important;
+            }
+            .race-buttons {
+              flex-direction: column !important;
+              width: 100% !important;
+            }
+            .race-buttons button {
+              width: 100% !important;
+              margin: 5px 0 !important;
+            }
+            .horse-name-editor {
+              grid-template-columns: 1fr !important;
+            }
+          }
+          
+          /* 중간 크기 모바일 화면 최적화 */
+          @media (max-width: 600px) and (min-width: 481px) {
+            .title-text {
+              font-size: 22px !important;
+              white-space: nowrap !important;
+            }
+          }
+          
           .title-text {
             animation: rainbow 3s linear infinite, float 3s ease-in-out infinite;
             font-size: 42px !important;
@@ -720,6 +818,55 @@ const RaceTrack: React.FC = () => {
             height: 25px;
             cursor: pointer;
           }
+          .result-title {
+            animation: rainbow 3s linear infinite;
+            font-size: 36px !important;
+            font-weight: bold;
+            text-shadow: 3px 3px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000 !important;
+            letter-spacing: 2px;
+          }
+          .result-item {
+            transition: all 0.3s ease;
+          }
+          .result-item:hover {
+            transform: translateX(10px) scale(1.05);
+          }
+          .rank-badge {
+            animation: spin 3s linear infinite;
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold !important;
+          }
+          .rank-badge-1 {
+            background: linear-gradient(45deg, gold, yellow) !important;
+            color: black !important;
+            border: 3px solid orange !important;
+            box-shadow: 0 0 10px gold !important;
+          }
+          .rank-badge-2 {
+            background: linear-gradient(45deg, silver, white) !important;
+            color: black !important;
+            border: 3px solid gray !important;
+          }
+          .rank-badge-3 {
+            background: linear-gradient(45deg, #cd7f32, #e9967a) !important;
+            color: black !important;
+            border: 3px solid brown !important;
+          }
+          .horse-name {
+            font-size: 24px !important;
+            font-weight: bold !important;
+            animation: blink 1s infinite;
+          }
+          .horse-stats {
+            font-size: 18px !important;
+            color: white !important;
+            background-color: rgba(0,0,0,0.7);
+            padding: 5px 10px;
+            border-radius: 10px;
+            margin-left: 10px !important;
+          }
         `}
       </style>
       <div className="pixel-container" style={{ 
@@ -729,12 +876,12 @@ const RaceTrack: React.FC = () => {
         border: `5px solid ${NEON.CYAN}`,
         boxShadow: `0 0 20px ${NEON.CYAN}`,
       }}>
-        <h1 className="pixel-text title-text" style={{ textAlign: 'center', marginBottom: '30px' }}>
-          🏇 레트로 경마 게임 🏇
+        <h1 className="pixel-text title-text" style={{ textAlign: 'center', marginBottom: '30px', whiteSpace: 'normal' }}>
+          🏇 경마 게임 🏇
         </h1>
         
         {/* 사운드 설정 및 말 수 조절 */}
-        <div style={{ marginBottom: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
+        <div className="mobile-controls" style={{ marginBottom: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
           {/* 말 수 조절 */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
             <span className="pixel-text horse-count-text" style={{ color: NEON.YELLOW }}>말 수:</span>
@@ -767,19 +914,25 @@ const RaceTrack: React.FC = () => {
           <button
             onClick={toggleEditNames}
             disabled={isRacing}
-            className="race-button"
+            className="race-button name-edit-button"
             style={{
               ...getPixelButtonStyle(NEON.CYAN, isRacing),
               padding: '8px 16px',
               fontSize: '14px',
-              minWidth: 'auto'
+              minWidth: 'auto',
+              alignSelf: 'flex-start'
             }}
           >
             {isEditingNames ? '✅ 이름 저장' : '✏️ 말 이름 편집'}
           </button>
           
           {/* 사운드 설정 */}
-          <label className="sound-label" style={{ display: 'inline-flex', alignItems: 'center', cursor: 'pointer' }}>
+          <label className="sound-label" style={{ 
+            display: 'inline-flex', 
+            alignItems: 'center', 
+            cursor: 'pointer',
+            alignSelf: 'flex-start'
+          }}>
             <input 
               className="pixel-checkbox"
               type="checkbox" 
@@ -809,7 +962,7 @@ const RaceTrack: React.FC = () => {
             }}>
               🐎 말 이름 설정 🐎
             </h3>
-            <div style={{ 
+            <div className="horse-name-editor" style={{ 
               display: 'grid', 
               gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', 
               gap: '15px' 
@@ -871,7 +1024,7 @@ const RaceTrack: React.FC = () => {
         )}
         
         {/* 경주 시작 및 리셋 버튼 */}
-        <div style={{ marginBottom: '30px', textAlign: 'center', display: 'flex', justifyContent: 'center', gap: '20px' }}>
+        <div className="race-buttons" style={{ marginBottom: '30px', textAlign: 'center', display: 'flex', justifyContent: 'center', gap: '20px' }}>
           <button
             onClick={startRace}
             disabled={isRacing}
