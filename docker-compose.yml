@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  # 개발 환경
+  react-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: react-racing-dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    command: npm start
+
+  # 프로덕션 환경
+  react-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: react-racing-prod
+    ports:
+      - "10050:80"
+    restart: unless-stopped 
