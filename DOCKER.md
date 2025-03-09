@@ -22,7 +22,7 @@ docker-compose up react-dev
 docker-compose up react-prod
 ```
 
-프로덕션 서버는 http://localhost:80 에서 접근할 수 있습니다.
+프로덕션 서버는 http://localhost:10050 에서 접근할 수 있습니다.
 
 ## 개별 Docker 명령어
 
@@ -45,7 +45,7 @@ docker run -it -p 3000:3000 -v ${PWD}:/app -v /app/node_modules react-racing-dev
 docker build -t react-racing-prod .
 
 # 프로덕션 환경 컨테이너 실행
-docker run -d -p 80:80 react-racing-prod
+docker run -d -p 10050:80 react-racing-prod
 ```
 
 ## 주의사항
